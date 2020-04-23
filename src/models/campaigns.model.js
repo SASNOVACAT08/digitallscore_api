@@ -5,17 +5,20 @@ const DataTypes = Sequelize.DataTypes;
 
 module.exports = function (app) {
   const sequelizeClient = app.get("sequelizeClient");
-  const users = sequelizeClient.define(
-    "users",
+  const campaigns = sequelizeClient.define(
+    "campaigns",
     {
-      email: {
+      product: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
       },
-      password: {
-        type: DataTypes.STRING,
+      budget: {
+        type: DataTypes.FLOAT,
         allowNull: false,
+      },
+      endedAt: {
+        type: DataTypes.DATE,
+        allowNull: true,
       },
     },
     {
@@ -28,14 +31,10 @@ module.exports = function (app) {
   );
 
   // eslint-disable-next-line no-unused-vars
-  users.associate = function (models) {
-    const { campaigns } = models;
-    users.hasMany(campaigns, {
-      foreignKey: {
-        allowNull: false,
-      },
-    });
+  campaigns.associate = function (models) {
+    const { users } = models;
+    campaigns.belongsTo(users);
   };
 
-  return users;
+  return campaigns;
 };
