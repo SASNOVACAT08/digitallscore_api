@@ -5,24 +5,15 @@ const DataTypes = Sequelize.DataTypes;
 
 module.exports = function (app) {
   const sequelizeClient = app.get("sequelizeClient");
-  const users = sequelizeClient.define(
-    "users",
+  const kpi = sequelizeClient.define(
+    "kpi",
     {
-      email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-      },
-      password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      firstname: {
-        type: DataTypes.STRING,
+      custom: {
+        type: DataTypes.BOOLEAN,
         allowNull: false,
       },
     },
@@ -36,14 +27,10 @@ module.exports = function (app) {
   );
 
   // eslint-disable-next-line no-unused-vars
-  users.associate = function (models) {
-    const { campaigns } = models;
-    users.hasMany(campaigns, {
-      foreignKey: {
-        allowNull: false,
-      },
-    });
+  kpi.associate = function (models) {
+    // Define associations here
+    // See http://docs.sequelizejs.com/en/latest/docs/associations/
   };
 
-  return users;
+  return kpi;
 };

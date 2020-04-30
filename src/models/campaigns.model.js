@@ -8,6 +8,14 @@ module.exports = function (app) {
   const campaigns = sequelizeClient.define(
     "campaigns",
     {
+      advertiser: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       product: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -16,8 +24,20 @@ module.exports = function (app) {
         type: DataTypes.FLOAT,
         allowNull: false,
       },
+      ended: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+      },
+      startedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
       endedAt: {
         type: DataTypes.DATE,
+        allowNull: false,
+      },
+      score: {
+        type: DataTypes.INTEGER,
         allowNull: true,
       },
     },
@@ -34,6 +54,10 @@ module.exports = function (app) {
   campaigns.associate = function (models) {
     const { users } = models;
     campaigns.belongsTo(users);
+    campaigns.belongsToMany(models.objectives, {
+      through: "campaigns_objectives",
+      foreignKey: "objectivesId",
+    });
   };
 
   return campaigns;
