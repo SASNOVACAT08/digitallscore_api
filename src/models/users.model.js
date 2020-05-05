@@ -37,10 +37,15 @@ module.exports = function (app) {
 
   // eslint-disable-next-line no-unused-vars
   users.associate = function (models) {
-    const { campaigns } = models;
+    const { campaigns, kpi } = models;
     users.hasMany(campaigns, {
       foreignKey: {
         allowNull: false,
+      },
+    });
+    users.hasMany(kpi, {
+      foreignKey: {
+        allowNull: true,
       },
     });
   };

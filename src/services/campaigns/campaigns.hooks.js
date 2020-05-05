@@ -1,14 +1,15 @@
 const { authenticate } = require("@feathersjs/authentication").hooks;
 const addUserId = require("../../hooks/add-user-id");
-const relationUser = require("../../hooks/relation-user");
-const relationUserById = require("../../hooks/relation-user-by-id");
+const relationUser = require("./hooks/relation-user");
+const relationUserById = require("./hooks/relation-user-by-id");
+const createObjectives = require("./hooks/create-objectives");
 
 module.exports = {
   before: {
     all: [authenticate("jwt")],
     find: [relationUser()],
     get: [relationUserById()],
-    create: [addUserId()],
+    create: [addUserId(), relationUserById()],
     update: [relationUser()],
     patch: [relationUser()],
     remove: [relationUser()],
@@ -18,7 +19,7 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [createObjectives()],
     update: [],
     patch: [],
     remove: [],

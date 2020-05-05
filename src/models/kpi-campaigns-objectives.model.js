@@ -5,22 +5,24 @@ const DataTypes = Sequelize.DataTypes;
 
 module.exports = function (app) {
   const sequelizeClient = app.get("sequelizeClient");
-  const campaignsObjectives = sequelizeClient.define(
-    "campaigns_objectives",
+  const kpiCampaignsObjectives = sequelizeClient.define(
+    "kpi_campaigns_objectives",
     {
       id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allownull: false,
         primaryKey: true,
         autoIncrement: true,
       },
       weight: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        defaultValue: 0,
       },
-      budgetPart: {
-        type: DataTypes.INTEGER,
+      objectivesValue: {
+        type: DataTypes.FLOAT,
         allowNull: false,
+        defaultValue: 0,
       },
     },
     {
@@ -33,12 +35,10 @@ module.exports = function (app) {
   );
 
   // eslint-disable-next-line no-unused-vars
-  campaignsObjectives.associate = function (models) {
-    campaignsObjectives.belongsToMany(models.kpi, {
-      through: "kpi_campaigns_objectives",
-      foreignKey: "campaignsObjectivesId",
-    });
+  kpiCampaignsObjectives.associate = function (models) {
+    // Define associations here
+    // See http://docs.sequelizejs.com/en/latest/docs/associations/
   };
 
-  return campaignsObjectives;
+  return kpiCampaignsObjectives;
 };

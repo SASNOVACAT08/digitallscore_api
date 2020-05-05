@@ -55,8 +55,8 @@ module.exports = function (app) {
     const { users } = models;
     campaigns.belongsTo(users);
     campaigns.belongsToMany(models.objectives, {
-      through: "campaigns_objectives",
-      foreignKey: "objectivesId",
+      through: { model: "campaigns_objectives", unique: false },
+      foreignKey: { name: "campaignsId", allowNull: false },
     });
   };
 

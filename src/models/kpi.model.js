@@ -28,8 +28,8 @@ module.exports = function (app) {
 
   // eslint-disable-next-line no-unused-vars
   kpi.associate = function (models) {
-    // Define associations here
-    // See http://docs.sequelizejs.com/en/latest/docs/associations/
+    const { users } = models;
+    kpi.belongsTo(users);
   };
 
   return kpi;
