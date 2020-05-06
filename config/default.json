@@ -10,10 +10,7 @@
     "entity": "user",
     "service": "users",
     "secret": "2Y5F6p8O7NQsC4kEOrnfO24PVJ8=",
-    "authStrategies": [
-      "jwt",
-      "local"
-    ],
+    "authStrategies": ["jwt", "local"],
     "jwtOptions": {
       "header": {
         "typ": "access"
@@ -27,6 +24,5 @@
       "usernameField": "email",
       "passwordField": "password"
     }
-  },
-  "mysql": "mysql://root:@localhost:3306/digitalscore_api"
+  }
 }
