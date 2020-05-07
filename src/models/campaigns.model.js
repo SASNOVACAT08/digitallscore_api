@@ -52,11 +52,12 @@ module.exports = function (app) {
 
   // eslint-disable-next-line no-unused-vars
   campaigns.associate = function (models) {
-    const { users } = models;
+    const { users, campaigns_objectives } = models;
     campaigns.belongsTo(users);
-    campaigns.belongsToMany(models.objectives, {
-      through: { model: "campaigns_objectives", unique: false },
-      foreignKey: { name: "campaignsId", allowNull: false },
+    campaigns.hasMany(campaigns_objectives, {
+      foreignKey: {
+        allowNull: false,
+      },
     });
   };
 

@@ -11,8 +11,8 @@ module.exports = (options = {}) => {
       campaigns_objectives.create({
         weight: 0,
         budgetPart: 0,
-        campaignsId: context.result.dataValues.id,
-        objectivesId: ele.dataValues.id,
+        campaignId: context.result.dataValues.id,
+        objectiveId: ele.dataValues.id,
       });
     });
     return context;
