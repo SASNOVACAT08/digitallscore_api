@@ -13,7 +13,6 @@ module.exports = (options = {}) => {
       kpi_campaigns_objectives,
     } = sequelize.models;
     context.params.sequelize = {
-      where: { userId: context.params.user.id, id: context.id },
       include: [
         { model: users, attributes: ["name", "firstname", "email"] },
         {
@@ -29,6 +28,15 @@ module.exports = (options = {}) => {
       ],
       raw: false,
     };
+    if (context.data.kpi) {
+      const { kpi } = context.data;
+      kpi_campaigns_objectives.create({
+        weight: kpi.weight,
+        objectivesValue: kpi.objectivesValue,
+        campaignsObjectiveId: kpi.campaignsObjectiveId,
+        kpiId: kpi.kpiId,
+      });
+    }
     return context;
   };
 };

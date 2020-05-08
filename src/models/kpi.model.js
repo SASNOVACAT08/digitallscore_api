@@ -30,9 +30,10 @@ module.exports = function (app) {
   kpi.associate = function (models) {
     const { users } = models;
     kpi.belongsTo(users);
-    kpi.belongsToMany(models.campaigns_objectives, {
-      through: { model: "kpi_campaigns_objectives", unique: false },
-      foreignKey: { name: "kpiId", allowNull: false },
+    kpi.hasMany(models.kpi_campaigns_objectives, {
+      foreignKey: {
+        allowNull: false,
+      },
     });
   };
 

@@ -36,8 +36,8 @@ module.exports = function (app) {
 
   // eslint-disable-next-line no-unused-vars
   kpiCampaignsObjectives.associate = function (models) {
-    // Define associations here
-    // See http://docs.sequelizejs.com/en/latest/docs/associations/
+    kpiCampaignsObjectives.belongsTo(models.kpi);
+    kpiCampaignsObjectives.belongsTo(models.campaigns_objectives);
   };
 
   return kpiCampaignsObjectives;
