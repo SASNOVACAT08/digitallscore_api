@@ -11,7 +11,7 @@ module.exports = {
     create: [addUserId()],
     update: [relationUser()],
     patch: [relationUser()],
-    remove: [relationUser()],
+    remove: [],
   },
 
   after: {
