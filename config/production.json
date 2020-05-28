@@ -1,4 +1,4 @@
 {
-  "host": "digitalscore-api-app.feathersjs.com",
+  "host": "digitallscore-api-app.herokuapp.com",
   "port": "PORT"
 }
