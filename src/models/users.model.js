@@ -9,7 +9,7 @@ module.exports = function (app) {
     "users",
     {
       email: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(150),
         allowNull: false,
         unique: true,
       },
