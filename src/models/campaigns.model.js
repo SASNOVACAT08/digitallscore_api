@@ -12,6 +12,10 @@ module.exports = function (app) {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      provider: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -52,13 +56,14 @@ module.exports = function (app) {
 
   // eslint-disable-next-line no-unused-vars
   campaigns.associate = function (models) {
-    const { users, campaigns_objectives } = models;
+    const { users, campaigns_objectives, discipline, lever } = models;
     campaigns.belongsTo(users);
     campaigns.hasMany(campaigns_objectives, {
       foreignKey: {
         allowNull: false,
       },
     });
+    campaigns.belongsTo(discipline);
   };
 
   return campaigns;

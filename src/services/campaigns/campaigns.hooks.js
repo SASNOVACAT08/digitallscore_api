@@ -3,7 +3,6 @@ const addUserId = require("../../hooks/add-user-id");
 const relationUser = require("./hooks/relation-user");
 const relationUserById = require("./hooks/relation-user-by-id");
 const createObjectives = require("./hooks/create-objectives");
-const createKpiCampaignsObjectives = require("./hooks/create-kpi-campaigns-objectives");
 
 module.exports = {
   before: {
@@ -12,7 +11,7 @@ module.exports = {
     get: [relationUserById()],
     create: [addUserId(), relationUserById()],
     update: [relationUser()],
-    patch: [createKpiCampaignsObjectives()],
+    patch: [],
     remove: [relationUser()],
   },
 

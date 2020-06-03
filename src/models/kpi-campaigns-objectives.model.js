@@ -38,6 +38,7 @@ module.exports = function (app) {
   kpiCampaignsObjectives.associate = function (models) {
     kpiCampaignsObjectives.belongsTo(models.kpi);
     kpiCampaignsObjectives.belongsTo(models.campaigns_objectives);
+    kpiCampaignsObjectives.belongsTo(models.tools);
   };
 
   return kpiCampaignsObjectives;
