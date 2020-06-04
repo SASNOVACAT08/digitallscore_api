@@ -64,6 +64,7 @@ module.exports = function (app) {
       },
     });
     campaigns.belongsTo(discipline);
+    campaigns.belongsTo(lever);
   };
 
   return campaigns;

@@ -5,9 +5,10 @@
 module.exports = (options = {}) => {
   return async (context) => {
     const sequelize = context.app.get("sequelizeClient");
+    const { Op } = require("sequelize");
     const { users } = sequelize.models;
     context.params.sequelize = {
-      where: { userId: context.params.user.id },
+      where: { userId: { [Op.or]: [context.params.user.id, null] } },
       include: [{ model: users, attributes: ["name", "firstname", "email"] }],
       raw: false,
     };

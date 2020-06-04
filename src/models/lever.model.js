@@ -25,6 +25,7 @@ module.exports = function (app) {
   // eslint-disable-next-line no-unused-vars
   lever.associate = function (models) {
     lever.belongsTo(models.discipline);
+    lever.hasMany(models.campaigns);
   };
 
   return lever;
